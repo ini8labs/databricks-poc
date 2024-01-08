@@ -121,13 +121,10 @@ class WordCountbatch():
                     .mode("overwrite")
                     .saveAsTable("word_count_table"))
 
-    def update_word_count(self):
+    def update_word_count(self,storage_name,container_name,file_location):
         '''
         Calculate the word count and write to a delta table
         '''
-        file_location = "tstfolder/script_specification.txt"
-        container_name = "tst01"
-        storage_name = "ini8databricks"
 
         raw_data = self.read_txt_files(storage_name, container_name, file_location)
         quality_words = self.get_quality_words(raw_data)
